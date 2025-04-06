@@ -35,28 +35,14 @@ As imagens estão localizadas na **pasta `imagens/`** e são carregadas dinamica
 
 ## ▶️ Executando o Projeto
 
-### Via código:
-```bash
-python projeto.py
+## 👨‍🏫 Créditos
 
-▶️ Via Executável (.exe):
-Este projeto pode ser convertido para .exe com PyInstaller:
-python -m pyinstaller --onefile --noconsole --add-data "imagens;imagens" --icon="icone.ico" projeto.py
+- Trabalho da disciplina Introdução à Programação com Python.
+- Professor: Eduardo Poffo Medeiros Dias
+- Aluno: Wallacy Alvarenga
 
-👨‍🏫 Créditos
-Trabalho da disciplina Introdução à Programação com Python.
+## 📁 Estrutura do Projeto
 
-Professor: Eduardo Poffo Medeiros Dias
-
-Aluno: Wallacy Alvarenga
-
-Código de pessoa: 6916694
-
-Email: wallacyalvarenga@univali.br
-
-📁 Estrutura do Projeto
-Copiar
-Editar
 Campo-Minado/
 ├── projeto.py
 ├── icone.ico
@@ -66,4 +52,15 @@ Campo-Minado/
 │   ├── bombaPerda.png
 │   ├── N0.png
 │   ├── N1.png
-│   └── ... N8.png
+│   └── ... N8.png'
+
+### Via código:
+```bash
+python projeto.py
+```
+
+### Via Executável (.exe):
+Este projeto pode ser convertido para .exe com PyInstaller:
+```bash
+python -m pyinstaller --onefile --noconsole --add-data "imagens;imagens" --icon="icone.ico" projeto.py
+```
