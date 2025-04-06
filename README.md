@@ -33,7 +33,6 @@ As imagens estão localizadas na **pasta `imagens/`** e são carregadas dinamica
 - Tkinter (incluído nas versões padrão do Python)
 - Imagens da pasta `imagens/` (botaoNada.png, bandeira.png, bombaPerda.png, N0.png a N8.png)
 
-## ▶️ Executando o Projeto
 
 ## 👨‍🏫 Créditos
 
@@ -43,6 +42,7 @@ As imagens estão localizadas na **pasta `imagens/`** e são carregadas dinamica
 
 ## 📁 Estrutura do Projeto
 
+```plaintext
 Campo-Minado/
 ├── projeto.py
 ├── icone.ico
@@ -52,7 +52,10 @@ Campo-Minado/
 │   ├── bombaPerda.png
 │   ├── N0.png
 │   ├── N1.png
-│   └── ... N8.png'
+│   └── ... N8.png
+```
+
+## ▶️ Executando o Projeto
 
 ### Via código:
 ```bash
