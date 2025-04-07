@@ -180,7 +180,7 @@ def clique_esquerdo(linha, coluna):
     match valor:
         case '💣':
             botoes[linha][coluna].config(image=img_bomba_perda)
-            revelar_campo_minado("Você perdeu", "Você clicou em uma bomba!")
+            revelar_campo_minado(False)
         case 0:
             revelar_vizinhos_zeros(linha, coluna)
         case _:
@@ -199,20 +199,24 @@ def clique_direito(event, linha, coluna):
 
 #verifica se todo o campo minado foi preenchido corretamente
 def verificar_vitoria():
+    bandeiras_corretas = True
+    campos_revelados = True
+
     for i in range(linhas):
         for j in range(colunas):
             botao = botoes[i][j]
             valor = matriz[i][j]
             imagem_atual = botao.cget('image')
 
-            if valor == '💣' and imagem_atual != str(img_bandeira):
-                return
-            if valor != '💣' and imagem_atual == str(img_bandeira):
-                return
-            if valor != '💣' and imagem_atual == str(img_nada):
-                return
+            if valor == '💣':
+                if imagem_atual != str(img_bandeira):
+                    bandeiras_corretas = False
+            else:
+                if imagem_atual == str(img_bandeira) or imagem_atual == str(img_nada):
+                    campos_revelados = False
 
-    revelar_campo_minado("Vitória", "Parabéns! Você venceu o jogo!")
+    if bandeiras_corretas or campos_revelados:
+        revelar_campo_minado(True)
 
 #revela todos os campos proximos que estao com 0 para exibir
 def revelar_vizinhos_zeros(linha, coluna):
@@ -241,7 +245,7 @@ def revelar_vizinhos_zeros(linha, coluna):
                 botoes[i][j].config(image=imagem)
 
 #mostra todo o campo minado e exibe a mensagem final
-def revelar_campo_minado(mensagem1, mensagem2):
+def revelar_campo_minado(isWin):
     for i in range(linhas):
         for j in range(colunas):
             valor = matriz[i][j]
@@ -251,7 +255,10 @@ def revelar_campo_minado(mensagem1, mensagem2):
             if botao.cget('image') == str(img_bandeira):
                 continue
             if valor == '💣':
-                botao.config(image=img_bomba_perda)
+                    if isWin:
+                        botao.config(image=img_bandeira)
+                    else:
+                        botao.config(image=img_bomba_perda)
             elif isinstance(valor, int):
                 if valor == 0:
                     botao.config(image=img_n0_bomba)
@@ -259,8 +266,10 @@ def revelar_campo_minado(mensagem1, mensagem2):
                     imagem = globals().get(f"img_n{valor}_bomba")
                     if imagem:
                         botao.config(image=imagem)
-
-    messagebox.showinfo(mensagem1, mensagem2)
+    if isWin :
+        messagebox.showinfo("Vitória", "Parabéns! Você venceu o jogo!")
+    else:
+        messagebox.showinfo("Você perdeu", "Você clicou em uma bomba!")
 
     frame_botoes = tk.Frame(frame_jogo)
     frame_botoes.pack(pady=10)
